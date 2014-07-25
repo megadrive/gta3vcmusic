@@ -122,10 +122,11 @@
 
 Why use this? Well instead of copy pasting your mp3s from your music folder and using up more space in your drive, we use Symbolic Links to essentially create a shortcut to your mp3 in your /mp3 folder. This differs from a Windows shortcut, in that symbolic links will make VC/3 think the file is actually there, when in reality it's somewhere else on your system.
 
-Hope you enjoy!
+Hope you enjoy! Source code: http://github.com/megadrive/gta3vcmusic
 
 http://megadriven.net
 http://twitch.tv/megadriving
-http://twitter.com/megadriven</value>
+http://twitter.com/megadriven
+</value>
   </data>
 </root>
