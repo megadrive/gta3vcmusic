@@ -15,10 +15,5 @@ namespace gta3vcMusic
         {
             InitializeComponent();
         }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

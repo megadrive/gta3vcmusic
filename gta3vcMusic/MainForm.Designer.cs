@@ -32,12 +32,15 @@
             this.lstFiles = new System.Windows.Forms.ListBox();
             this.txtFolderPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
-            this.fileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.lblDropHelp = new System.Windows.Forms.Label();
             this.btnRemoveSelected = new System.Windows.Forms.Button();
             this.btnCreateSymLinks = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
+            this.btnLoadPlaylist = new System.Windows.Forms.Button();
+            this.btnSavePlaylist = new System.Windows.Forms.Button();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // folderDialog
@@ -49,10 +52,10 @@
             this.lstFiles.AllowDrop = true;
             this.lstFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstFiles.FormattingEnabled = true;
-            this.lstFiles.Location = new System.Drawing.Point(15, 63);
+            this.lstFiles.Location = new System.Drawing.Point(12, 90);
             this.lstFiles.Name = "lstFiles";
             this.lstFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstFiles.Size = new System.Drawing.Size(483, 184);
+            this.lstFiles.Size = new System.Drawing.Size(486, 184);
             this.lstFiles.TabIndex = 3;
             this.lstFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstFiles_DragDrop);
             this.lstFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstFiles_DragEnter);
@@ -75,14 +78,14 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // fileDialog
+            // openFileDialog
             // 
-            this.fileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileName = "openFileDialog1";
             // 
             // lblDropHelp
             // 
             this.lblDropHelp.AutoSize = true;
-            this.lblDropHelp.Location = new System.Drawing.Point(12, 47);
+            this.lblDropHelp.Location = new System.Drawing.Point(9, 74);
             this.lblDropHelp.Name = "lblDropHelp";
             this.lblDropHelp.Size = new System.Drawing.Size(198, 13);
             this.lblDropHelp.TabIndex = 6;
@@ -100,9 +103,9 @@
             // 
             // btnCreateSymLinks
             // 
-            this.btnCreateSymLinks.Location = new System.Drawing.Point(13, 254);
+            this.btnCreateSymLinks.Location = new System.Drawing.Point(12, 280);
             this.btnCreateSymLinks.Name = "btnCreateSymLinks";
-            this.btnCreateSymLinks.Size = new System.Drawing.Size(485, 23);
+            this.btnCreateSymLinks.Size = new System.Drawing.Size(486, 23);
             this.btnCreateSymLinks.TabIndex = 8;
             this.btnCreateSymLinks.Text = "!!! Create SymLinks !!!";
             this.btnCreateSymLinks.UseVisualStyleBackColor = true;
@@ -130,12 +133,34 @@
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 
+            // btnLoadPlaylist
+            // 
+            this.btnLoadPlaylist.Location = new System.Drawing.Point(234, 65);
+            this.btnLoadPlaylist.Name = "btnLoadPlaylist";
+            this.btnLoadPlaylist.Size = new System.Drawing.Size(129, 19);
+            this.btnLoadPlaylist.TabIndex = 11;
+            this.btnLoadPlaylist.Text = "Load Playlist";
+            this.btnLoadPlaylist.UseVisualStyleBackColor = true;
+            this.btnLoadPlaylist.Click += new System.EventHandler(this.btnLoadPlaylist_Click);
+            // 
+            // btnSavePlaylist
+            // 
+            this.btnSavePlaylist.Location = new System.Drawing.Point(369, 65);
+            this.btnSavePlaylist.Name = "btnSavePlaylist";
+            this.btnSavePlaylist.Size = new System.Drawing.Size(129, 19);
+            this.btnSavePlaylist.TabIndex = 12;
+            this.btnSavePlaylist.Text = "Save Playlist";
+            this.btnSavePlaylist.UseVisualStyleBackColor = true;
+            this.btnSavePlaylist.Click += new System.EventHandler(this.btnSavePlaylist_Click);
+            // 
             // GTA3VCMusic
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 289);
+            this.ClientSize = new System.Drawing.Size(507, 316);
+            this.Controls.Add(this.btnSavePlaylist);
+            this.Controls.Add(this.btnLoadPlaylist);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreateSymLinks);
@@ -160,12 +185,15 @@
         private System.Windows.Forms.ListBox lstFiles;
         private System.Windows.Forms.TextBox txtFolderPath;
         private System.Windows.Forms.Button btnBrowse;
-        private System.Windows.Forms.OpenFileDialog fileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label lblDropHelp;
         private System.Windows.Forms.Button btnRemoveSelected;
         private System.Windows.Forms.Button btnCreateSymLinks;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.Button btnLoadPlaylist;
+        private System.Windows.Forms.Button btnSavePlaylist;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
 
     }
 }

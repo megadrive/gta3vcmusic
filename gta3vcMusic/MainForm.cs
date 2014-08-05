@@ -16,6 +16,13 @@ namespace gta3vcMusic
         // The folder to output to, should be the /mp3 of VC or GTA3
         string gameMp3Folder = "";
 
+        // Playlist file type.
+        /**
+         * The file is just a text file with each music file separated by a newline, but consistency
+         * is key. Plus I might want to make it more elaborate later!
+         */
+        const string PlaylistFileType = "GTA3VCMusic playlist|*.gta3vc";
+
         public GTA3VCMusic()
         {
             InitializeComponent();
@@ -47,6 +54,7 @@ namespace gta3vcMusic
         private void lstFiles_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            lstFiles.BeginUpdate();
             foreach (string file in files)
             {
                 // only add if extension is .mp3
@@ -59,6 +67,7 @@ namespace gta3vcMusic
                     }
                 }
             }
+            lstFiles.EndUpdate();
         }
 
         private void btnCreateSymLinks_Click(object sender, EventArgs e)
@@ -110,6 +119,45 @@ namespace gta3vcMusic
         {
             AboutForm about = new AboutForm();
             about.ShowDialog(this);
+        }
+
+        private void btnSavePlaylist_Click(object sender, EventArgs e)
+        {
+            saveFileDialog.Filter = PlaylistFileType;
+
+            if (saveFileDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                string filename = saveFileDialog.FileName;
+
+                // open file for writing
+                System.IO.StreamWriter pFile = new StreamWriter(filename);
+
+                var files = lstFiles.Items;
+                foreach( string file in files )
+                {
+                    pFile.WriteLine(file);
+                }
+
+                pFile.Close();
+            }
+        }
+
+        private void btnLoadPlaylist_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filename = openFileDialog.FileName;
+
+                lstFiles.Items.Clear();
+
+                System.IO.StreamReader pFile = new StreamReader(filename);
+
+                while (!pFile.EndOfStream)
+                {
+                    string musicFile = pFile.ReadLine();
+                    lstFiles.Items.Add(musicFile);
+                }
+            }
         }
     }
 }
