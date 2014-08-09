@@ -13,19 +13,22 @@ namespace gta3vcMusic
 {
     public partial class GTA3VCMusic : Form
     {
-        // The folder to output to, should be the /mp3 of VC or GTA3
-        string gameMp3Folder = "";
+        Random rng = new Random();
 
-        // Playlist file type.
-        /**
-         * The file is just a text file with each music file separated by a newline, but consistency
-         * is key. Plus I might want to make it more elaborate later!
-         */
-        const string PlaylistFileType = "GTA3VCMusic playlist|*.gta3vc";
+        // Playlist file type, now supports an actual format!
+        const string PlaylistFileType = "Playlist files|*.m3u";
+        const string _settingsFilename = "gta3vc_settings.txt";
 
         public GTA3VCMusic()
         {
             InitializeComponent();
+
+            // get previous used folder
+            if (File.Exists(_settingsFilename))
+            {
+                StreamReader reader = new StreamReader(_settingsFilename);
+                txtFolderPath.Text = reader.ReadLine();
+            }
 
             //txtFolderPath.Text = "E:\\Games\\Grand Theft Auto Vice City\\mp3";
         }
@@ -42,7 +45,6 @@ namespace gta3vcMusic
             if (result == DialogResult.OK)
             {
                 txtFolderPath.Text = folderDialog.SelectedPath;
-                gameMp3Folder = folderDialog.SelectedPath;
             }
         }
 
@@ -58,7 +60,8 @@ namespace gta3vcMusic
             foreach (string file in files)
             {
                 // only add if extension is .mp3
-                if (file.IndexOf(".mp3") == file.Length - 4)
+                var s = file.Split('.');
+                if (s[s.Length-1] == "mp3")
                 {
                     // check for duplicates
                     if (lstFiles.FindString(file) == -1)
@@ -72,19 +75,39 @@ namespace gta3vcMusic
 
         private void btnCreateSymLinks_Click(object sender, EventArgs e)
         {
-            var filenames = lstFiles.Items;
-
-            foreach (string file in filenames)
+            if (Directory.Exists(txtFolderPath.Text))
             {
-                // get rekt
-                string[] split = file.Split('\\');
-                string nFile = "\"" + txtFolderPath.Text + "\\" + split[split.Length - 1] + "\"";
-                var sfile = "\"" + file + "\"";
+                txtFolderPath.ForeColor = Color.Black;
 
-                Console.WriteLine("/c mklink " + nFile + " " + sfile);
+                var filenames = lstFiles.Items;
 
-                ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe", "/c mklink " + nFile + " " + sfile);
-                Process.Start(startInfo);
+                foreach (string file in filenames)
+                {
+                    // get rekt
+                    string[] split = file.Split('\\');
+                    string nFile = "\"" + txtFolderPath.Text + "\\" + split[split.Length - 1] + "\"";
+                    var sfile = "\"" + file + "\"";
+
+                    Console.WriteLine("/c mklink " + nFile + " " + sfile);
+
+                    ProcessStartInfo startInfo = new ProcessStartInfo("cmd.exe", "/c mklink " + nFile + " " + sfile);
+                    Process.Start(startInfo);
+                }
+
+                // Save last used
+                if( System.IO.File.Exists(_settingsFilename) )
+                {
+                    System.IO.File.Delete(_settingsFilename); // todo: find something more elegant.
+                }
+
+                StreamWriter writer = new StreamWriter(_settingsFilename);
+                writer.WriteLine(txtFolderPath.Text);
+                writer.Close();
+
+            }
+            else
+            {
+                txtFolderPath.ForeColor = Color.Red;
             }
         }
 
@@ -133,7 +156,7 @@ namespace gta3vcMusic
                 System.IO.StreamWriter pFile = new StreamWriter(filename);
 
                 var files = lstFiles.Items;
-                foreach( string file in files )
+                foreach (string file in files)
                 {
                     pFile.WriteLine(file);
                 }
@@ -144,6 +167,8 @@ namespace gta3vcMusic
 
         private void btnLoadPlaylist_Click(object sender, EventArgs e)
         {
+            openFileDialog.Filter = PlaylistFileType;
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filename = openFileDialog.FileName;
@@ -155,8 +180,30 @@ namespace gta3vcMusic
                 while (!pFile.EndOfStream)
                 {
                     string musicFile = pFile.ReadLine();
-                    lstFiles.Items.Add(musicFile);
+                    var s = musicFile.Split('.');
+                    if (s[s.Length - 1] == "mp3")
+                    {
+                        // check for duplicates
+                        if (lstFiles.FindString(musicFile) == -1)
+                        {
+                            lstFiles.Items.Add(musicFile);
+                        }
+                    }
                 }
+            }
+        }
+
+        private void btnRandomise_Click(object sender, EventArgs e)
+        {
+            var files = lstFiles.Items;
+            int n = files.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                var value = files[k];
+                files[k] = files[n];
+                files[n] = value;
             }
         }
     }

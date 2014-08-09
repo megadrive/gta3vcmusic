@@ -41,6 +41,9 @@
             this.btnLoadPlaylist = new System.Windows.Forms.Button();
             this.btnSavePlaylist = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRandomise = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // folderDialog
@@ -52,10 +55,10 @@
             this.lstFiles.AllowDrop = true;
             this.lstFiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lstFiles.FormattingEnabled = true;
-            this.lstFiles.Location = new System.Drawing.Point(12, 90);
+            this.lstFiles.Location = new System.Drawing.Point(19, 116);
             this.lstFiles.Name = "lstFiles";
             this.lstFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lstFiles.Size = new System.Drawing.Size(486, 184);
+            this.lstFiles.Size = new System.Drawing.Size(534, 171);
             this.lstFiles.TabIndex = 3;
             this.lstFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstFiles_DragDrop);
             this.lstFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.lstFiles_DragEnter);
@@ -64,13 +67,13 @@
             // 
             this.txtFolderPath.Location = new System.Drawing.Point(12, 12);
             this.txtFolderPath.Name = "txtFolderPath";
-            this.txtFolderPath.Size = new System.Drawing.Size(322, 20);
+            this.txtFolderPath.Size = new System.Drawing.Size(382, 20);
             this.txtFolderPath.TabIndex = 4;
             this.txtFolderPath.Text = "Path to GTA3 or VC\'s mp3 folder";
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(340, 12);
+            this.btnBrowse.Location = new System.Drawing.Point(400, 12);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(78, 19);
             this.btnBrowse.TabIndex = 5;
@@ -78,14 +81,10 @@
             this.btnBrowse.UseVisualStyleBackColor = true;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog1";
-            // 
             // lblDropHelp
             // 
             this.lblDropHelp.AutoSize = true;
-            this.lblDropHelp.Location = new System.Drawing.Point(9, 74);
+            this.lblDropHelp.Location = new System.Drawing.Point(6, 25);
             this.lblDropHelp.Name = "lblDropHelp";
             this.lblDropHelp.Size = new System.Drawing.Size(198, 13);
             this.lblDropHelp.TabIndex = 6;
@@ -93,7 +92,7 @@
             // 
             // btnRemoveSelected
             // 
-            this.btnRemoveSelected.Location = new System.Drawing.Point(234, 38);
+            this.btnRemoveSelected.Location = new System.Drawing.Point(276, 44);
             this.btnRemoveSelected.Name = "btnRemoveSelected";
             this.btnRemoveSelected.Size = new System.Drawing.Size(129, 19);
             this.btnRemoveSelected.TabIndex = 7;
@@ -103,9 +102,9 @@
             // 
             // btnCreateSymLinks
             // 
-            this.btnCreateSymLinks.Location = new System.Drawing.Point(12, 280);
+            this.btnCreateSymLinks.Location = new System.Drawing.Point(13, 309);
             this.btnCreateSymLinks.Name = "btnCreateSymLinks";
-            this.btnCreateSymLinks.Size = new System.Drawing.Size(486, 23);
+            this.btnCreateSymLinks.Size = new System.Drawing.Size(549, 23);
             this.btnCreateSymLinks.TabIndex = 8;
             this.btnCreateSymLinks.Text = "!!! Create SymLinks !!!";
             this.btnCreateSymLinks.UseVisualStyleBackColor = true;
@@ -115,7 +114,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(369, 38);
+            this.btnClear.Location = new System.Drawing.Point(411, 44);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(129, 19);
             this.btnClear.TabIndex = 9;
@@ -125,7 +124,7 @@
             // 
             // btnAbout
             // 
-            this.btnAbout.Location = new System.Drawing.Point(420, 12);
+            this.btnAbout.Location = new System.Drawing.Point(484, 12);
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(78, 19);
             this.btnAbout.TabIndex = 10;
@@ -135,7 +134,7 @@
             // 
             // btnLoadPlaylist
             // 
-            this.btnLoadPlaylist.Location = new System.Drawing.Point(234, 65);
+            this.btnLoadPlaylist.Location = new System.Drawing.Point(6, 44);
             this.btnLoadPlaylist.Name = "btnLoadPlaylist";
             this.btnLoadPlaylist.Size = new System.Drawing.Size(129, 19);
             this.btnLoadPlaylist.TabIndex = 11;
@@ -145,7 +144,7 @@
             // 
             // btnSavePlaylist
             // 
-            this.btnSavePlaylist.Location = new System.Drawing.Point(369, 65);
+            this.btnSavePlaylist.Location = new System.Drawing.Point(141, 44);
             this.btnSavePlaylist.Name = "btnSavePlaylist";
             this.btnSavePlaylist.Size = new System.Drawing.Size(129, 19);
             this.btnSavePlaylist.TabIndex = 12;
@@ -153,27 +152,50 @@
             this.btnSavePlaylist.UseVisualStyleBackColor = true;
             this.btnSavePlaylist.Click += new System.EventHandler(this.btnSavePlaylist_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnRandomise);
+            this.groupBox1.Controls.Add(this.btnLoadPlaylist);
+            this.groupBox1.Controls.Add(this.btnSavePlaylist);
+            this.groupBox1.Controls.Add(this.lblDropHelp);
+            this.groupBox1.Controls.Add(this.btnClear);
+            this.groupBox1.Controls.Add(this.btnRemoveSelected);
+            this.groupBox1.Location = new System.Drawing.Point(13, 38);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(549, 265);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Music Files";
+            // 
+            // btnRandomise
+            // 
+            this.btnRandomise.Location = new System.Drawing.Point(411, 19);
+            this.btnRandomise.Name = "btnRandomise";
+            this.btnRandomise.Size = new System.Drawing.Size(129, 19);
+            this.btnRandomise.TabIndex = 13;
+            this.btnRandomise.Text = "Randomlise Playlist";
+            this.btnRandomise.UseVisualStyleBackColor = true;
+            this.btnRandomise.Click += new System.EventHandler(this.btnRandomise_Click);
+            // 
             // GTA3VCMusic
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 316);
-            this.Controls.Add(this.btnSavePlaylist);
-            this.Controls.Add(this.btnLoadPlaylist);
+            this.ClientSize = new System.Drawing.Size(571, 343);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCreateSymLinks);
-            this.Controls.Add(this.btnRemoveSelected);
-            this.Controls.Add(this.lblDropHelp);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.txtFolderPath);
             this.Controls.Add(this.lstFiles);
+            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.Name = "GTA3VCMusic";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "GTA3VC Music";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,6 +216,8 @@
         private System.Windows.Forms.Button btnLoadPlaylist;
         private System.Windows.Forms.Button btnSavePlaylist;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnRandomise;
 
     }
 }
